@@ -1,0 +1,2 @@
+// NEW → RUNNABLE → RUNNING → WAITING/BLOCKED → TERMINATED
+    //“Thread scheduling is handled by JVM + OS.”
