@@ -1,0 +1,103 @@
+wait() vs sleep() in Java
+1. Purpose
+
+wait()
+
+Used for inter-thread communication
+
+One thread waits until another thread notifies it
+
+sleep()
+
+Used to pause execution for a fixed time
+
+No communication with other threads
+
+2. Lock behavior (MOST IMPORTANT)
+
+wait()
+
+Releases the lock (monitor) on the object
+
+Allows other threads to enter synchronized blocks
+
+sleep()
+
+Does NOT release the lock
+
+Thread keeps holding the lock while sleeping
+
+👉 This is usually the big differentiator interviewers want.
+
+3. Where they belong
+
+wait()
+
+Must be called inside a synchronized block or method
+
+Otherwise → IllegalMonitorStateException
+
+sleep()
+
+Can be called anywhere
+
+No synchronization required
+
+4. Who wakes the thread?
+
+wait()
+
+Woken up by:
+
+notify()
+
+notifyAll()
+
+or spurious wakeup (rare but real)
+
+sleep()
+
+Wakes up automatically after time expires
+
+Or if interrupted
+
+5. Class they belong to
+
+wait()
+
+Method of Object class
+
+sleep()
+
+Static method of Thread class
+
+6. Usage in Producer–Consumer
+
+wait()
+
+Used when buffer is full or empty
+
+Thread waits until condition changes
+
+sleep()
+
+Used only to simulate delay
+
+NOT used for synchronization
+
+Tiny code example
+synchronized (obj) {
+    obj.wait();   // releases lock, waits for notify()
+}
+
+Thread.sleep(1000); // does NOT release lock
+
+One-liner interview answers 🏆
+
+“wait() releases the lock, sleep() does not.”
+
+“wait() is for thread communication, sleep() is for time delay.”
+
+“wait() must be called inside synchronized block.”
+
+“sleep() belongs to Thread, wait() belongs to Object.”
